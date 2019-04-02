@@ -1,0 +1,28 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://gameobjects/Level.gd" type="Script" id=1]
+
+[node name="Level" type="Node2D"]
+script = ExtResource( 1 )
+
+[node name="NormalPigTimer" type="Timer" parent="."]
+wait_time = 5.0
+autostart = true
+
+[node name="SmallPigTimer" type="Timer" parent="."]
+wait_time = 10.0
+autostart = true
+
+[node name="BigPigTimer" type="Timer" parent="."]
+wait_time = 3.0
+autostart = true
+
+[node name="SmallPig" type="Node2D" parent="."]
+
+[node name="NormalPig" type="Node2D" parent="."]
+
+[node name="BigPig" type="Node2D" parent="."]
+
+[connection signal="timeout" from="NormalPigTimer" to="." method="_on_NormalPig_timeout"]
+[connection signal="timeout" from="SmallPigTimer" to="." method="_on_SmallPig_timeout"]
+[connection signal="timeout" from="BigPigTimer" to="." method="_on_BigPig_timeout"]
