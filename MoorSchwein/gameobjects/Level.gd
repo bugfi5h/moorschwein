@@ -1,6 +1,6 @@
 extends Node2D
 
-const PIG = preload("res://MoorSchwein.tscn")
+const PIG = preload("res://gameobjects/MoorSchwein.tscn")
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
@@ -15,19 +15,18 @@ func _ready():
 
 func _build_pig(points : int, horizontal_speed : float, vertical_speed :float, amplitude : float, scale : Vector2) -> Area2D:
 	var pig = PIG.instance()
+	var screen_site = int(get_viewport_rect().size.y)
+	pig.HORIZONTAL_SPEED = horizontal_speed
+	pig.POINTS = points
+	pig.VERTICAL_SPEED = vertical_speed
+	pig.AMPLITUDE = amplitude
+	pig.scale = scale	
 	var x = 0
 	var dir = randi()%2+1
 	if dir == 2:
-		dir = -1
+		pig.HORIZONTAL_SPEED *= -1
 		x = get_viewport_rect().size.x
-	var screen_site = int(get_viewport_rect().size.y)
 	pig.position = Vector2(x, randi()%screen_site+25)
-	pig.POINTS = points
-	pig.HORIZONTAL_SPEED = horizontal_speed
-	pig.VERTICAL_SPEED = vertical_speed
-	pig.AMPLITUDE = amplitude
-	pig.DIRECTION = dir
-	pig.scale = scale
 	return pig
 
 

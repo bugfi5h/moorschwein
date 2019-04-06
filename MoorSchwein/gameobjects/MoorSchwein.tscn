@@ -7,10 +7,11 @@
 extents = Vector2( 32, 32 )
 
 [node name="MoorSchwein" type="Node2D"]
+position = Vector2( 34, 286 )
 script = ExtResource( 1 )
-HORIZONTAL_SPEED = 100.0
-VERTICAL_SPEED = 2.0
-AMPLITUDE = 150.0
+__meta__ = {
+"_edit_group_": true
+}
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 2 )
