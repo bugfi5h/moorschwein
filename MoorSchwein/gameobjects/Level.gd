@@ -15,7 +15,7 @@ func _ready():
 
 func _build_pig(points : int, horizontal_speed : float, vertical_speed :float, amplitude : float, scale : Vector2) -> Area2D:
 	var pig = PIG.instance()
-	var screen_site = int(get_viewport_rect().size.y)
+	var screen_size = int(get_viewport_rect().size.y)
 	pig.HORIZONTAL_SPEED = horizontal_speed
 	pig.POINTS = points
 	pig.VERTICAL_SPEED = vertical_speed
@@ -26,7 +26,7 @@ func _build_pig(points : int, horizontal_speed : float, vertical_speed :float, a
 	if dir == 2:
 		pig.HORIZONTAL_SPEED *= -1
 		x = get_viewport_rect().size.x
-	pig.position = Vector2(x, randi()%screen_site+25)
+	pig.position = Vector2(x, randi()%screen_size+25)
 	return pig
 
 
@@ -43,4 +43,3 @@ func _on_SmallPig_timeout():
 func _on_BigPig_timeout():
 	var pig = _build_pig(5,50,2,100, Vector2(1.5,1.5))
 	$BigPig.add_child(pig)
-	print(randi()%2+1)

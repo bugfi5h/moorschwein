@@ -20,6 +20,7 @@ func _physics_process(delta:float) -> void:
 		kill(false)
 	if global_position.x < 0:
 		kill(false)
+
 	
 
 
