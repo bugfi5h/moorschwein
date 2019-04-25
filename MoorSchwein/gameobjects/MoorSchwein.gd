@@ -7,6 +7,7 @@ export(float) var AMPLITUDE = 150
 var m_start : float = 0
 var m_start_position : Vector2 
 
+signal killed(points)
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -21,12 +22,10 @@ func _physics_process(delta:float) -> void:
 	if global_position.x < 0:
 		kill(false)
 
-	
-
 
 func kill(grant_points: bool) -> void:
-	if get_parent().has_method("add_points") and grant_points:
-		get_parent().add_points(POINTS)
+	if grant_points:
+		emit_signal("killed",POINTS)
 	queue_free()
 
 func _on_MoorSchwein_input_event(viewport, event, shape_idx) -> void:

@@ -1,5 +1,6 @@
 extends Node2D
 
+var mPoints : int = 0
 const PIG = preload("res://gameobjects/MoorSchwein.tscn")
 # Declare member variables here. Examples:
 # var a = 2
@@ -7,11 +8,15 @@ const PIG = preload("res://gameobjects/MoorSchwein.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	$CanvasLayer/UI.update_points(mPoints)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass
+
+func _on_pig_killed(points : int) -> void:
+	mPoints += points
+	$CanvasLayer/UI.update_points(mPoints)
 
 func _build_pig(points : int, horizontal_speed : float, vertical_speed :float, amplitude : float, scale : Vector2) -> Area2D:
 	var pig = PIG.instance()
@@ -27,6 +32,7 @@ func _build_pig(points : int, horizontal_speed : float, vertical_speed :float, a
 		pig.HORIZONTAL_SPEED *= -1
 		x = get_viewport_rect().size.x
 	pig.position = Vector2(x, randi()%screen_size+25)
+	pig.connect("killed", self, "_on_pig_killed")
 	return pig
 
 
