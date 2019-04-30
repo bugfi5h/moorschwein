@@ -30,6 +30,7 @@ func _build_pig(points : int, horizontal_speed : float, vertical_speed :float, a
 	var dir = randi()%2+1
 	if dir == 2:
 		pig.HORIZONTAL_SPEED *= -1
+		pig.get_node("Sprite").flip_h = true
 		x = get_viewport_rect().size.x
 	pig.position = Vector2(x, randi()%screen_size+25)
 	pig.connect("killed", self, "_on_pig_killed")
